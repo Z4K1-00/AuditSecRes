@@ -1,0 +1,16 @@
+#!/bin/bash
+
+NETWORK=10.87.87
+MACHINE=$1
+INTERFACE_ENTREE=injection
+INTERFACE_SORTIE=canal
+
+# Add network interface pair
+sudo ip l add dev $INTERFACE_ENTREE type veth peer name $INTERFACE_SORTIE
+
+# Assign IP address to the sortie interface
+sudo ip a add dev $INTERFACE_SORTIE $NETWORK.$MACHINE/30
+
+# Bring up both interfaces
+sudo ip l set dev $INTERFACE_ENTREE up
+sudo ip l set dev $INTERFACE_SORTIE up
