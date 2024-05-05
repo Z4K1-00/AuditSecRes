@@ -13,4 +13,3 @@ def decapsulate_and_forward(pkt):
 # Sniff ICMP packets on the interface and decapsulate and forward them
 sniff(iface='h3-eth0', prn=decapsulate_and_forward, filter='icmp')
 
-
