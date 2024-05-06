@@ -24,12 +24,12 @@ padded_payload = padder.update(original_payload) + padder.finalize()
 encrypted_payload = encryptor.update(padded_payload) + encryptor.finalize()
 
 # Injection de paquets UDPs
-sendp(Ether(src=RandMAC(), dst='2a:87:08:d1:8f:99') /
+sendp(Ether(src=RandMAC(), dst='32:de:9c:12:73:e0') /
       IP(src='10.87.87.1', dst='10.87.87.2') /
       UDP(sport=5678, dport=6789) /
       encrypted_payload, iface=INTERFACE_INJECTION)
 
 # Injection de paquets TCPs
-sendp(Ether(src=RandMAC(), dst='2a:87:08:d1:8f:99') /
+sendp(Ether(src=RandMAC(), dst='32:de:9c:12:73:e0') /
       IP(src='10.87.87.1', dst='10.87.87.2') /
       TCP(sport=5678, dport=6789, flags='S'), iface=INTERFACE_INJECTION)

@@ -8,7 +8,7 @@ def decapsulate_and_forward(pkt):
         original_packet = pkt[Raw].load
 
         # Forward the decapsulated packet to the canal interface
-        sendp(original_packet, iface='canal')
+        sendp(original_packet, iface='injection')
 
 # Sniff ICMP packets on the interface and decapsulate and forward them
 sniff(iface='h3-eth0', prn=decapsulate_and_forward, filter='icmp')
